@@ -28,3 +28,12 @@ Lecturas formateadas: [Lectura: 23,50 ºC, Lectura: 36,80 ºC, Lectura: 41,20 º
 Media de lecturas válidas: 31,00 ºC
 Lectura crítica: Lectura crítica: 41,20 ºC
 ```
+
+## AR105
+He resuelto la parte del ejercicio de Kotlin mostrando cómo se puede hacer de manera más eficiente y elegante. He añadido comentarios explicativos para que se entienda mejor el código.
+
+Las respuestas a la pregunta de reflexión serían:
+1. **Java, switch y when:**
+   En Java, un switch puede no tener un case para una nueva subclase y, si no hay un default, el programa puede no hacer nada para ese caso. Así, la nueva situación queda sin gestionar. En Kotlin, si usamos una sealed interface y un when sin else, el compilador comprueba que se contemplen todos los estados conocidos. Si añadimos otro estado y olvidamos tratarlo, nos avisará para que completemos el when. Si ponemos else, dejamos de recibir esa comprobación concreta.
+2. **Estados y excepciones en una app móvil:**
+   La carga, una lectura correcta y un fallo de conexión son situaciones que la aplicación puede esperar. Si las representamos como estados, el código puede decidir qué mostrar en cada caso: por ejemplo, un indicador de carga, el resultado o un mensaje con opción para reintentar. En cambio, usar excepciones para gestionar continuamente situaciones normales puede hacer que el flujo sea más difícil de entender. Las excepciones siguen siendo útiles para fallos excepcionales, pero deben gestionarse cuando corresponda: un error no controlado puede cerrar la app. El modelado de estados no garantiza por sí solo que la app sea fluida, pero facilita responder a cada situación sin dejarla sin tratar.
