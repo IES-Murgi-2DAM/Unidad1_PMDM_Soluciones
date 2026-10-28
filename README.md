@@ -37,3 +37,22 @@ Las respuestas a la pregunta de reflexión serían:
    En Java, un switch puede no tener un case para una nueva subclase y, si no hay un default, el programa puede no hacer nada para ese caso. Así, la nueva situación queda sin gestionar. En Kotlin, si usamos una sealed interface y un when sin else, el compilador comprueba que se contemplen todos los estados conocidos. Si añadimos otro estado y olvidamos tratarlo, nos avisará para que completemos el when. Si ponemos else, dejamos de recibir esa comprobación concreta.
 2. **Estados y excepciones en una app móvil:**
    La carga, una lectura correcta y un fallo de conexión son situaciones que la aplicación puede esperar. Si las representamos como estados, el código puede decidir qué mostrar en cada caso: por ejemplo, un indicador de carga, el resultado o un mensaje con opción para reintentar. En cambio, usar excepciones para gestionar continuamente situaciones normales puede hacer que el flujo sea más difícil de entender. Las excepciones siguen siendo útiles para fallos excepcionales, pero deben gestionarse cuando corresponda: un error no controlado puede cerrar la app. El modelado de estados no garantiza por sí solo que la app sea fluida, pero facilita responder a cada situación sin dejarla sin tratar.
+
+## AP106
+### Definir el perfil mínimo de la aplicación:
+* Se considera un dispositivo está **recomendado** para ejecutar la aplicación si cumple con las siguientes características:
+  * Android >= 12
+  * RAM > 4GB
+  * Batería > 5000
+  * Pantalla > 5.5
+  * Bluetoth
+  * Datos móviles
+* Se considera un dispositivo **compatible con limitaciones** si cumple con las siguientes características:
+  * Android >= 10
+  * RAM > 4GB
+  * Batería > 4000
+  * Pantalla > 5.5
+  * Bluetoth
+* Se considera un dispositivo **incompatible** si no cumple con todas las características mínimas de compatibilidad.
+
+El Murgi Móvil B queda como RECOMENDADO porque cumple con holgura el perfil mínimo (Android 14, 6 GB de RAM, pantalla de 6,4" y Bluetooth) y además alcanza los 5000 mAh y tiene datos móviles, de modo que puede afrontar la jornada completa de consultas Bluetooth y sincronizar las lecturas sin depender del wifi. El Murgi Móvil A es NO_COMPATIBLE porque, pese a tener Android 13, 4500 mAh y pantalla de 5,5", solo dispone de 3 GB de RAM, por debajo del mínimo de 4 GB. El Murgi Móvil D también es NO_COMPATIBLE: aunque es el más potente en RAM (8 GB) y batería (6000 mAh), su Android 11 no llega a la versión mínima exigida (12). La Murgi Tablet C es COMPATIBLE_CON_LIMITACIONES: cumple todos los mínimos (Android 12, 4 GB, 7000 mAh y 10,1") y su batería cubre sobradamente la jornada, pero al no disponer de datos móviles la app solo podrá sincronizar las lecturas cuando haya wifi; deberá guardarlas en almacenamiento local y subirlas más tarde, con el riesgo de acumular datos y de no poder recibir avisos en tiempo real desde el invernadero.
